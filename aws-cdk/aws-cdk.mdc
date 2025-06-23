@@ -1,0 +1,91 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: AWS CDK rules
+globs: 
+alwaysApply: true
+---
+
+Before diving into the best practices, please note that you may need to adapt the globs depending on your project's specific file structure and requirements.
+
+---
+name: aws-cdk-best-practices.mdc
+description: Best practices for AWS CDK infrastructure as code
+globs: **/*.{ts,js}
+---
+
+- Use constructs for reusable components
+- Implement proper dependency management
+- Use environment-agnostic code with context variables
+- Use Context Variables in cdk.json to define environment-specific configurations like account and region.
+- Retrieve the context in bin/app.ts using app.node.tryGetContext("env").
+- Pass the environment configuration dynamically to your stack during deployment
+- Follow the principle of least privilege for IAM roles
+- Use CDK aspects for centralized policy enforcement
+
+---
+name: aws-lambda-best-practices.mdc
+description: Best practices for AWS Lambda functions
+globs: **/src/functions/*.{ts,js}
+---
+
+- Keep functions small and focused on a single task
+- Use environment variables for configuration
+- Implement proper error handling and logging
+- Use async/await for asynchronous operations
+- Optimize function performance with cold start considerations
+
+---
+name: postgresql-best-practices.mdc
+description: Best practices for PostgreSQL database operations
+globs: **/src/functions/*.{ts,js}
+---
+
+- Use connection pooling for better performance
+- Implement proper transaction management
+- Use parameterized queries to prevent SQL injection
+- Optimize queries with appropriate indexing
+- Handle database errors gracefully and retry when appropriate
+
+---
+name: dynamodb-best-practices.mdc
+description: Best practices for working with DynamoDB
+globs: **/src/functions/*.{ts,js}
+---
+
+- Design efficient partition keys for even data distribution
+- Use appropriate secondary indexes for query patterns
+- Implement batch operations for better performance
+- Handle DynamoDB stream events efficiently
+- Use consistent reads when data consistency is critical
+
+---
+name: aws-secrets-manager-best-practices.mdc
+description: Best practices for using AWS Secrets Manager
+globs: **/src/functions/*.{ts,js}
+---
+
+- Use Secrets Manager for sensitive information like database credentials
+- Implement proper secret rotation strategies
+- Cache secrets in memory to reduce API calls
+- Use IAM policies to control access to secrets
+- Handle secret retrieval errors gracefully
+
+---
+name: cloudwatch-best-practices.mdc
+description: Best practices for AWS CloudWatch monitoring
+globs: **/*.{ts,js}
+---
+
+- Use custom metrics for application-specific monitoring
+- Implement alarms for critical conditions
+- Create dashboards for easy visualization of metrics
+- Use log insights for advanced log analysis
+- Set up proper retention policies for logs and metrics
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
