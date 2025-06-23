@@ -1,0 +1,153 @@
+---
+description: Conventional Commit rules and commit-message template
+globs: 
+alwaysApply: true
+---
+---
+description: >-
+Comprehensive Conventional Commit guidelines for the git repo.
+This rule explains **why** each requirement exists, so contributors understand the
+intent—not just the syntax. Following it keeps our history readable, enables
+automatic release notes, and prevents hidden breaking changes from slipping in.
+globs: 
+alwaysApply: true
+---
+## 📜 Philosophy
+
+A clean commit history is our first line of documentation. Conventional Commits
+make changelogs and semantic‑version bumps fully automated while keeping human
+reviewers sane. Every guideline below is designed to answer one of these three
+questions:
+
+1. **What changed?**
+2. **Why did it change?**
+3. **Do consumers need to react?**
+
+If your message answers all three, future you (and your teammates) will thank
+present you.
+
+---
+
+## 1. Allowed **types** & when to use them
+
+| Type       | When to choose it                                          | Typical effect      |
+| ---------- | ---------------------------------------------------------- | ------------------- |
+| `feat`     | Adding a new user‑visible capability.                      | Minor version bump. |
+| `fix`      | Correcting a bug that impacted behavior.                   | Patch bump.         |
+| `docs`     | Changing documentation only.                               | None.               |
+| `test`     | Adding or refactoring tests.                               | None.               |
+| `style`    | Formatting, whitespace, comments—no logic changes.         | None.               |
+| `refactor` | Internal code changes that alter structure, not behavior.  | None.               |
+| `perf`     | Performance improvement without changing API.              | Patch bump.         |
+| `build`    | Build system config, deps, or scripts.                     | None.               |
+| `ci`       | CI configuration files & pipelines.                        | None.               |
+| `chore`    | Routine tasks like version bumps, package rename.          | None.               |
+| `TYP`      | Strictly type‑system fixes in TS code (no runtime change). | None.               |
+
+> **Why so specific?** Automated tools like `changesets` map type → semantic
+> versioning. Precise types prevent accidental major releases.
+
+---
+
+## 2. Choosing a **scope**
+
+*Scope = the folder or package impacted.* Examples: `agents-openai`, `docs`,
+`scripts`. Use `core` if the work spans multiple packages.
+
+> **Tip:** If you touch *only* tests, include the package name but keep `test`
+> as your type—`test(agents-core): …`.
+
+---
+
+## 3. Crafting the **header**
+
+```text
+<type>(<scope>): <short summary>
+```
+
+* ≤ 80 characters—fits nicely in GitHub UI.
+* Imperative mood: "add", "fix", "remove" (think *git* does X).
+  ❌ *Fixed X* → ✅ *fix X*.
+* Skip the trailing period; it wastes precious space.
+
+---
+
+## 4. Writing a rich **body** (optional but encouraged)
+
+Use the body when context matters:
+
+* **Why**: Explain motivation or linked issue.
+* **What**: Summarize key implementation points & alternatives considered.
+* **Migration steps**: Bullet any action downstream users must take.
+
+Wrap lines at \~100 chars so diff viewers don’t scroll horizontally.
+
+---
+
+## 5. Flagging **breaking changes**
+
+If consumers must adjust code, add a dedicated line **anywhere in the body**:
+
+```text
+BREAKING CHANGE: \<explanation\>
+```
+
+Changesets will interpret this and force a major version bump.
+
+---
+
+## 6. Golden **example**
+
+```text
+feat(agents-openai): support streaming function calls
+
+Adds an async iterator helper around OpenAI stream responses.
+BREAKING CHANGE: removes deprecated callback helper.
+```
+
+---
+
+## 7. Cursor’s auto‑fill **template**
+
+Cursor should populate this structure when a commit message is requested:
+
+```text
+type(scope): summary
+
+Body explaining:
+* Motivation
+* What changed
+* Impact / migration steps
+```
+
+---
+
+## 8. **Changesets** in practice
+
+Run `pnpm changeset` whenever:
+
+* You add/remove/rename/top‑level export.
+* A breaking change line is present.
+
+This creates a small Markdown file under `.changeset/` that drives versioning.
+
+---
+
+## 9. Pre‑commit **checklist**
+
+```bash
+pnpm build && pnpm test && pnpm lint
+```
+
+All three must pass locally before pushing. CI will repeat them.
+
+*Need to bypass?* Add `--no-verify`, but only for hotfixes you’ll tidy up later.
+
+---
+
+## 10. **Sign‑offs** & external contributors
+
+Add `--signoff` to your commit if you are not an org member. It signals you
+agree to the DCO (Developer Certificate of Origin).
+
+---

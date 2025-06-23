@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: general Rules
+globs: 
+alwaysApply: true
+---
+
+- Always plan (`terraform plan`) before applying any changes. Ask before running `terraform apply`.
+- Always destroy any temporary resources created during testing before provisioning new ones.
+- Always check for existing Terraform modules or resources before creating new ones.
+- Avoid changing proven infrastructure patterns unless necessary or explicitly requested.
+- Always prefer simple, modular solutions—use existing modules when possible.
+- Avoid duplicating infrastructure logic—reuse modules, variables, and locals when applicable.
+- Respect environment boundaries (`dev`, `stage`, `prod`)—ensure variables, states, and outputs are scoped correctly.
+- Never modify unrelated infrastructure resources. Keep changes scoped to the task.
+- Be cautious when modifying `.tfvars`, `backend`, or `provider` configurations—ask for confirmation first.
+- When fixing infra bugs, try to work within the existing setup. Only introduce new modules or tools after exhausting current solutions, and remove obsolete components afterward.
+- Keep `.tf` files organized, readable, and under 300 lines—refactor when necessary.
+- Never hardcode secrets or access keys—use `secrets.tfvars`, SSM Parameter Store, or Secrets Manager.
+- Do not use mock or dummy resources in `dev` or `prod`. Only use mocking patterns in dedicated test environments.
+- Never overwrite or delete state files or `.env`-like config without confirmation.
+- Avoid long shell scripts embedded in Terraform—use external scripts or provisioners sparingly and document them.
+- Focus only on resources relevant to the task; do not modify surrounding infra or dependencies unless necessary.
+- Write automated tests using tools like `terratest` or `checkov` to validate critical functionality.
+- Maintain consistent folder structure, naming conventions, and tagging across all resources.
+- Think through the blast radius of every change—what else might be affected?

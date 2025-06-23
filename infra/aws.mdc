@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: AWS Rules
+globs: 
+alwaysApply: true
+---
+
+
+- Always prefer official AWS Terraform modules from the Terraform Registry for consistency and reliability.
+- Define IAM roles and policies strictly following the principle of least privilege to minimize security risks.
+- Ensure AWS VPCs are implemented for network isolation, clearly segmented into public and private subnets.
+- Enable and configure AWS CloudTrail in all AWS accounts for thorough auditing and monitoring of infrastructure changes.
+- Utilize AWS Auto Scaling groups for critical services to achieve high availability and fault tolerance.
+- Set up CloudWatch alarms for proactive monitoring and alerting on essential AWS resource metrics.
+- Store Terraform state securely in AWS S3 buckets, ensuring versioning and encryption at rest are enabled.
+- Manage DNS records using AWS Route 53 with proper health checks configured for critical endpoints.
+- Implement AWS WAF rules to proactively protect web applications from common security vulnerabilities.
+- Regularly back up data using AWS EBS snapshots, enabling quick disaster recovery procedures.
+- Leverage AWS Secrets Manager for secure handling and rotation of sensitive data and credentials.
+- Implement AWS Shield to protect resources from DDoS attacks.
+- Use AWS Config for continuous monitoring, assessment, and compliance checks of AWS resource configurations.
+- Apply tagging and resource-naming conventions consistently across AWS infrastructure for better management and cost allocation.
+- Enable detailed billing and cost optimization using AWS Cost Explorer and AWS Budgets.
+- Automate infrastructure provisioning with Terraform CI/CD pipelines for consistent deployments.
+- Regularly review and update security groups and network ACLs to minimize unnecessary exposure.
+- Utilize AWS Systems Manager for managing operational tasks, configurations, and patching across instances.
+- Set up multi-region disaster recovery plans using AWS Backup and replication strategies for business continuity.
+- Use AWS Certificate Manager (ACM) for automated management and renewal of SSL/TLS certificates.
+- Use SSM for EC2 Over SSH
